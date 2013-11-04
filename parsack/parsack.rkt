@@ -96,8 +96,7 @@
       [ok ok])))
        
 (define (oneOfStrings . ss)
-  (<?> (parser-compose (cs <- (choice (map (compose1 try string) ss)))
-                       (return (list->string cs)))
+  (<?> (parser-one (~> (choice (map (compose1 try string) ss))))
        (string-append "one of: "
                       (string-join (map ~s ss) ", "))))
 
